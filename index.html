@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voice Command from Debabrata Karfa</title>
+  <style>
+  .show {
+    display: block;
+  }
+  </style>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/1.5.0/annyang.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script>
+  if (annyang) {
+
+
+    // define the functions our commands will run.
+    var hello = function() {
+      $("#hello").slideDown("slow");
+      scrollTo("#section_hello");
+    };
+
+    var clear = function() {
+      $("#hello").slideToggle("slow");
+      $("#hello2").slideDown("slow");
+    };
+
+    // Let's define a command.
+    var commands = {
+      'hello (there)': hello,
+      'clear': clear,
+    };
+
+    // Add our commands to annyang
+    annyang.addCommands(commands);
+
+    // OPTIONAL: activate debug mode for detailed logging in the console
+    annyang.debug();
+    // Add voice commands to respond to
+    annyang.addCommands(commands);
+    // OPTIONAL: Set a language for speech recognition (defaults to English)
+    annyang.setLanguage('en');
+
+    // Start listening.
+    annyang.start();
+  }
+  </script>
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+  <section id="section_header">
+    <section id="section_hello">
+      <p><em>Go ahead, try it&hellip;</em></p>
+      <p class="voice_instructions">Say "Hello!"</p>
+      <p id="hello" class="hidden">Welcome to <br>Voice Interactive System!<br>Say "CLEAR" now!!!</p>
+      <p id="hello2" class="hidden">Thank you! for your valueable time.</p>
+    </section>
+  </section>
+</body>
+</html>
